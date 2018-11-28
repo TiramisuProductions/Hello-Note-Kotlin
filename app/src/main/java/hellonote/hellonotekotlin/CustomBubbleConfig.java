@@ -5,8 +5,8 @@ import android.graphics.Point;
 import com.flipkart.chatheads.config.ChatHeadDefaultConfig;
 import com.flipkart.chatheads.utils.ChatHeadUtils;
 
-public class CustomChatHeadConfig extends ChatHeadDefaultConfig {
-    public CustomChatHeadConfig(Context context, int xPosition, int yPosition) {
+public class CustomBubbleConfig extends ChatHeadDefaultConfig {
+    public CustomBubbleConfig(Context context, int xPosition, int yPosition) {
         super(context);
         setHeadHorizontalSpacing(ChatHeadUtils.dpToPx(context, -2));
         setHeadVerticalSpacing(ChatHeadUtils.dpToPx(context, 2));

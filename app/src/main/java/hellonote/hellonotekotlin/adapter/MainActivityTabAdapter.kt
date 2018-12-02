@@ -1,0 +1,43 @@
+package hellonote.hellonotekotlin.adapter
+
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
+import hellonote.hellonotekotlin.ContactFragment
+import hellonote.hellonotekotlin.fragment.BankAccountFragment
+import hellonote.hellonotekotlin.fragment.CallRecordFragment
+import hellonote.hellonotekotlin.fragment.EmailFragment
+import hellonote.hellonotekotlin.fragment.NoteFragment
+
+class MainActivityTabAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+    override fun getItem(position: Int): Fragment {
+        return when (position) {
+            0 -> ContactFragment()
+            1 -> EmailFragment()
+            2 -> BankAccountFragment()
+            3 -> NoteFragment()
+
+            else -> {
+                return CallRecordFragment()
+            }
+        }
+    }
+
+    override fun getCount(): Int {
+        return 5
+    }
+
+    override fun getPageTitle(position: Int): CharSequence {
+        return when (position) {
+            0 -> "Contact"
+            1 -> "Email"
+            2 -> "Bank Account"
+            3 -> "Note"
+            4 ->  "Call Recording"
+            else -> {
+                return "";
+            }
+        }
+    }
+}

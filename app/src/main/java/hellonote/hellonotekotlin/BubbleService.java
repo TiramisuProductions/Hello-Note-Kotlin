@@ -26,6 +26,7 @@ import com.flipkart.chatheads.container.WindowManagerContainer;
 import com.flipkart.circularImageView.CircularDrawable;
 import com.flipkart.circularImageView.TextDrawer;
 import com.flipkart.circularImageView.notification.CircularNotificationDrawer;
+import hellonote.hellonotekotlin.database.BankAccount;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -153,9 +154,8 @@ public class BubbleService extends Service {
             }
         });
         addChatHead();
-        addChatHead();
-        addChatHead();
-        addChatHead();
+
+
         chatHeadManager.setArrangement(MinimizedArrangement.class, null);
         moveToForeground();
 

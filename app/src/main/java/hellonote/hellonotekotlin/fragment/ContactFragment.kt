@@ -4,11 +4,22 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.orm.SugarRecord
 
 import hellonote.hellonotekotlin.R
+import hellonote.hellonotekotlin.SampleAdapter
+import hellonote.hellonotekotlin.adapter.ContactAdapter
+import hellonote.hellonotekotlin.database.Contact
+import kotlinx.android.synthetic.main.fragment_contact.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,11 +41,17 @@ class ContactFragment : Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    private val ctx : Context? = this.context;
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
+
+
         }
     }
 
@@ -42,8 +59,50 @@ class ContactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_contact, container, false);
+       // initRecyler()
+
+
+
+
+
+
+       //
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false)
+        return rootView;
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initRecyler()
+
+
+    }
+
+    fun initRecyler(){
+
+
+        recycler_contact.setHasFixedSize(true)
+        recycler_contact.layoutManager = LinearLayoutManager(activity)
+
+        doAsync {
+            var contacts :  List<Contact>? = null;
+            contacts = SugarRecord.listAll(Contact::class.java)
+            val adapter = ContactAdapter(this@ContactFragment.requireContext())
+            adapter.items = contacts
+
+
+            uiThread {
+                recycler_contact.adapter = adapter
+            }
+        }
+
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

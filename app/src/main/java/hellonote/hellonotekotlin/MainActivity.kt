@@ -18,19 +18,25 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import android.support.design.widget.Snackbar
+import android.support.v4.view.PagerAdapter
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import com.orm.SugarRecord
 import hellonote.hellonotekotlin.database.BankAccount
 import com.orm.SugarRecord.listAll
 import hellonote.hellonotekotlin.adapter.MainActivityTabAdapter
 import com.tompee.funtablayout.SimpleTabAdapter
 import hellonote.hellonotekotlin.database.Contact
-import hellonote.hellonotekotlin.fragment.BankAccountFragment
-import hellonote.hellonotekotlin.fragment.CallRecordFragment
-import hellonote.hellonotekotlin.fragment.EmailFragment
-import hellonote.hellonotekotlin.fragment.NoteFragment
+import hellonote.hellonotekotlin.fragment.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import com.ogaclejapan.smarttablayout.SmartTabLayout
+
+
 
 
 class MainActivity : AppCompatActivity(),ContactFragment.OnFragmentInteractionListener,EmailFragment.OnFragmentInteractionListener,BankAccountFragment.OnFragmentInteractionListener,NoteFragment.OnFragmentInteractionListener,CallRecordFragment.OnFragmentInteractionListener
@@ -94,8 +100,17 @@ class MainActivity : AppCompatActivity(),ContactFragment.OnFragmentInteractionLi
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE)
         val fragmentAdapter = MainActivityTabAdapter(supportFragmentManager)
         viewpager.adapter = fragmentAdapter
+        hometablayout.setViewPager(viewpager)
 
-        hometablayout.setupWithViewPager(viewpager)
+        //hometablayout.setupWithViewPager(viewpager)
+
+       // hometablayout.getTabAt(0)?.setIcon(R.drawable.ic_contact);
+        //hometablayout.getTabAt(1)?.setIcon(R.drawable.ic_email);
+        //hometablayout.getTabAt(2)?.setIcon(R.drawable.ic_bank);
+        //hometablayout.getTabAt(3)?.setIcon(R.drawable.ic_note);
+        //hometablayout.getTabAt(4)?.setIcon(R.drawable.ic_note);
+
+
 
 
         doAsync {  val contact : Contact = Contact("asd","asd","asd","asd",true,"asdd",false);
@@ -123,6 +138,9 @@ class MainActivity : AppCompatActivity(),ContactFragment.OnFragmentInteractionLi
 
 
     }
+
+
+
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

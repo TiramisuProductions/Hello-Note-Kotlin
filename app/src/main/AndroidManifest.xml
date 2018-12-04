@@ -12,7 +12,7 @@
             tools:replace="android:theme,android:icon"
             android:supportsRtl="true"
 
-            android:name="com.orm.SugarApp"
+            android:name="hellonote.Application"
             android:theme="@style/MyMaterialTheme">
         <activity android:name=".MainActivity">
             <intent-filter>

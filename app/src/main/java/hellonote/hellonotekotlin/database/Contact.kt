@@ -4,7 +4,7 @@ import com.orm.SugarRecord
 
  class Contact : SugarRecord <Contact> {
     var name: String? = null
-    var phoneno: String? = null
+    var contactNumber: String? = null
     var calledNumber: String? = null
     var calledName: String? = null
     var incoming: Boolean = false
@@ -15,7 +15,7 @@ import com.orm.SugarRecord
      constructor(){}
      constructor(
          name: String?,
-         phoneno: String?,
+         contactNumber: String?,
          calledNumber: String?,
          calledName: String?,
          incoming: Boolean,
@@ -23,7 +23,7 @@ import com.orm.SugarRecord
          isBackedUp: Boolean
      ) : super() {
          this.name = name
-         this.phoneno = phoneno
+         this.contactNumber = contactNumber
          this.calledNumber = calledNumber
          this.calledName = calledName
          this.incoming = incoming
@@ -33,14 +33,14 @@ import com.orm.SugarRecord
 
      constructor(
          name: String?,
-         phoneno: String?,
+         contactNumber: String?,
          calledNumber: String?,
          calledName: String?,
          incoming: Boolean,
          tsMilli: String?
      ) : super() {
          this.name = name
-         this.phoneno = phoneno
+         this.contactNumber = contactNumber
          this.calledNumber = calledNumber
          this.calledName = calledName
          this.incoming = incoming
@@ -49,13 +49,13 @@ import com.orm.SugarRecord
 
      constructor(
          name: String?,
-         phoneno: String?,
+         contactNumber: String?,
          tsMilli: String?,
          isSavedFromApp: Boolean,
          isBackedUp: Boolean
      ) : super() {
          this.name = name
-         this.phoneno = phoneno
+         this.contactNumber = contactNumber
          this.tsMilli = tsMilli
          this.isSavedFromApp = isSavedFromApp
          this.isBackedUp = isBackedUp

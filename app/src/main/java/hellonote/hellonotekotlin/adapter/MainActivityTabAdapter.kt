@@ -3,11 +3,7 @@ package hellonote.hellonotekotlin.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import hellonote.hellonotekotlin.ContactFragment
-import hellonote.hellonotekotlin.fragment.BankAccountFragment
-import hellonote.hellonotekotlin.fragment.CallRecordFragment
-import hellonote.hellonotekotlin.fragment.EmailFragment
-import hellonote.hellonotekotlin.fragment.NoteFragment
+import hellonote.hellonotekotlin.fragment.*
 
 class MainActivityTabAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 

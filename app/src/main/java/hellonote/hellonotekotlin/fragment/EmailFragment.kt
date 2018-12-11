@@ -4,11 +4,22 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.orm.SugarRecord
 
 import hellonote.hellonotekotlin.R
+import hellonote.hellonotekotlin.adapter.EmailAdapter
+import hellonote.hellonotekotlin.bus.RxBus
+import hellonote.hellonotekotlin.bus.RxEvent
+import hellonote.hellonotekotlin.database.Email
+import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_list.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +40,8 @@ class EmailFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var personDisposable: Disposable
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +56,43 @@ class EmailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_email, container, false)
+        return inflater.inflate(R.layout.fragment_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyler()
+        personDisposable = RxBus.listen(RxEvent.EventAddPerson::class.java).subscribe {
+
+            initRecyler()
+        }
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
+    }
+
+    fun initRecyler(){
+
+
+        recycler_list.setHasFixedSize(true)
+        recycler_list.layoutManager = LinearLayoutManager(activity)
+
+        doAsync {
+            var contacts :  List<Email>? = null;
+            contacts = SugarRecord.listAll(Email::class.java)
+            val adapter = EmailAdapter(this@EmailFragment.requireContext())
+            Collections.reverse(contacts)
+            adapter.items = contacts
+            uiThread {
+                recycler_list.adapter = adapter
+            }
+        }
+
+
+
     }
 
     override fun onAttach(context: Context) {

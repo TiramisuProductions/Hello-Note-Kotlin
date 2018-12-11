@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:id="@+id/contact_cardView"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    card_view:cardCornerRadius="10dp"
+                                    card_view:cardElevation="4dp"
+                                    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+        <android.support.constraint.ConstraintLayout
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+        >
+
+            <TextView
+                    android:id="@+id/textview_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="12:10, 3 dec 2017"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/textview_label_callby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Call By"
+                    card_view:layout_constraintEnd_toStartOf="@+id/textview_date"
+                    card_view:layout_constraintHorizontal_bias="0.0"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/textview_called_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Cell"
+                    android:textColor="@color/black"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_label_callby" />
+
+            <TextView
+                    android:id="@+id/textview_called_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Cell"
+                    android:textColor="@color/black"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.05"
+                    card_view:layout_constraintStart_toEndOf="@+id/textview_called_contact"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_label_callby" />
+
+
+            <TextView
+                    android:id="@+id/textview_label_saved_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/saved_details"
+                    card_view:layout_constraintEnd_toStartOf="@+id/imageview_backup"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_called_number" />
+
+
+            <TextView
+                    android:id="@+id/textview_label_contact_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/card_note"
+                    android:textColor="@color/black"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_label_saved_details" />
+
+            <TextView
+                    android:id="@+id/textview_contact_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.0"
+                    card_view:layout_constraintStart_toEndOf="@+id/textview_label_contact_note"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_label_saved_details" />
+
+
+            <TextView
+                    android:id="@+id/textview_label_contact_no_of_tasks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/card_no_of_tasks"
+                    android:textColor="@color/black"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_contact_note" />
+
+            <TextView
+                    android:id="@+id/textview_contact_no_of_tasks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.0"
+                    card_view:layout_constraintStart_toEndOf="@+id/textview_label_contact_no_of_tasks"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_contact_note" />
+
+            <ImageView
+                    android:id="@+id/imageview_call_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    card_view:srcCompat="@drawable/ic_call_received_black_24dp"
+                    card_view:layout_constraintBottom_toTopOf="@+id/textview_contact_name"
+                    card_view:layout_constraintEnd_toStartOf="@+id/imageview_overflow"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_called_number" />
+
+
+            <ImageView
+                    android:id="@+id/imageview_overflow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    card_view:layout_constraintBottom_toTopOf="@+id/textview_contact_name"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_called_number"
+                    card_view:layout_constraintVertical_bias="0.0"
+                    card_view:srcCompat="@drawable/ic_menu_black_24dp" />
+
+            <ImageView
+                    android:id="@+id/imageview_backup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    card_view:layout_constraintBottom_toTopOf="@+id/textview_contact_name"
+                    card_view:layout_constraintEnd_toStartOf="@+id/imageview_call_state"
+                    card_view:layout_constraintTop_toBottomOf="@+id/textview_called_number"
+                    card_view:srcCompat="@drawable/ic_cloud_off_black_24dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

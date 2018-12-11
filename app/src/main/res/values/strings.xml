@@ -44,6 +44,19 @@
     <string name="hint_email">Enter Email</string>
     <string name="Enter">Enter the name</string>
 
+
+    //Error
+
+    <string name="error_name">Invalid name</string>
+    <string name="error_number">Invalid Phone number</string>
+    <string name="error_ac_no">Invalid Account No</string>
+    <string name="error_Others">Invalid  IFSC No or Others</string>
+    <string name="error_note">Invalid  Note</string>
+    <string name="error_email">Enter Email</string>
+
+
+
+
     //Button
     <string name="save">Save</string>
     <string name="add_to_calender">Add To Calender</string>
@@ -62,6 +75,7 @@
     <string name="card_ifsc_no">IFSC Code :</string>
     <string name="card_note">Note :</string>
     <string name="card_record_name">Record Name :</string>
+    <string name="card_no_of_tasks">No of Tasks</string>
 
     <string name="edit_dialog_contact">Edit Contact</string>
     <string name="edit_dialog_bank">Edit Bank</string>

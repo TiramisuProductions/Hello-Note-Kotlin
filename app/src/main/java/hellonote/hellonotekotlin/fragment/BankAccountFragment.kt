@@ -4,11 +4,25 @@ package hellonote.hellonotekotlin.fragment
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.orm.SugarRecord
 
 import hellonote.hellonotekotlin.R
+import hellonote.hellonotekotlin.adapter.BankAccountAdapter
+import hellonote.hellonotekotlin.adapter.EmailAdapter
+import hellonote.hellonotekotlin.bus.RxBus
+import hellonote.hellonotekotlin.bus.RxEvent
+import hellonote.hellonotekotlin.database.BankAccount
+import hellonote.hellonotekotlin.database.Email
+import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_list.*
+
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +39,9 @@ class BankAccountFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var personDisposable: Disposable
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +56,40 @@ class BankAccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bank_account, container, false)
+        return inflater.inflate(R.layout.fragment_list, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyler()
+        personDisposable = RxBus.listen(RxEvent.EventAddPerson::class.java).subscribe {
+
+            initRecyler()
+        }
+
+    }
+
+    fun initRecyler(){
+
+
+        recycler_list.setHasFixedSize(true)
+        recycler_list.layoutManager = LinearLayoutManager(activity)
+
+        doAsync {
+            var bankAccounts :  List<BankAccount>? = null;
+            bankAccounts = SugarRecord.listAll(BankAccount::class.java)
+            val adapter = BankAccountAdapter(this@BankAccountFragment.requireContext())
+            Collections.reverse(bankAccounts)
+            adapter.items = bankAccounts
+            uiThread {
+                recycler_list.adapter = adapter
+            }
+        }
+
+
+
+    }
+
 
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

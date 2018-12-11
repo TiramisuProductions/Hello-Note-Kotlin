@@ -4,22 +4,22 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.orm.SugarRecord
 
 import hellonote.hellonotekotlin.R
-import hellonote.hellonotekotlin.SampleAdapter
 import hellonote.hellonotekotlin.adapter.ContactAdapter
+import hellonote.hellonotekotlin.bus.RxBus
+import hellonote.hellonotekotlin.bus.RxEvent
 import hellonote.hellonotekotlin.database.Contact
-import kotlinx.android.synthetic.main.fragment_contact.*
+import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_list.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +40,7 @@ class ContactFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var personDisposable: Disposable
 
     private val ctx : Context? = this.context;
 
@@ -59,18 +60,7 @@ class ContactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_contact, container, false);
-       // initRecyler()
-
-
-
-
-
-
-       //
-
-
-
+        val rootView = inflater.inflate(R.layout.fragment_list, container, false);
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -80,24 +70,28 @@ class ContactFragment : Fragment() {
 
         initRecyler()
 
+        personDisposable = RxBus.listen(RxEvent.EventAddPerson::class.java).subscribe {
+
+           initRecyler()
+        }
+
 
     }
 
     fun initRecyler(){
 
 
-        recycler_contact.setHasFixedSize(true)
-        recycler_contact.layoutManager = LinearLayoutManager(activity)
+        recycler_list.setHasFixedSize(true)
+        recycler_list.layoutManager = LinearLayoutManager(activity)
 
         doAsync {
             var contacts :  List<Contact>? = null;
             contacts = SugarRecord.listAll(Contact::class.java)
             val adapter = ContactAdapter(this@ContactFragment.requireContext())
+            Collections.reverse(contacts)
             adapter.items = contacts
-
-
             uiThread {
-                recycler_contact.adapter = adapter
+                recycler_list.adapter = adapter
             }
         }
 
